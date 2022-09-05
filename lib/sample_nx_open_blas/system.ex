@@ -106,7 +106,8 @@ defmodule SampleNxOpenBlas.System do
 
   defp open_blas_path(:aptitude) do
     case System.cmd("dpkg", ["-L", "libopenblas64-pthread-dev"], stderr_to_stdout: true) do
-      {result, 0} -> String.split(result, "\n")
+      {result, 0} ->
+        String.split(result, "\n")
 
       {_, 1} ->
         case System.cmd("dpkg", ["-L", "libopenblas-dev"], stderr_to_stdout: true) do
