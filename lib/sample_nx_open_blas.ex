@@ -19,17 +19,4 @@ defmodule SampleNxOpenBlas do
   end
 
   def scopy_nif(_t), do: :erlang.nif_error(:not_loaded)
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SampleNxOpenBlas.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
