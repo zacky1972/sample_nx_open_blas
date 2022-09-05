@@ -4,9 +4,6 @@ PRIV = $(MIX_APP_PATH)/priv
 BUILD = $(MIX_APP_PATH)/obj
 NIF = $(PRIV)/libnif.so
 
-CFLAGS += -I$(shell echo "open_blas_include" | elixir scripts/system.exs)
-LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -l$(shell echo "lib_openblas" | elixir scripts/system.exs)
-
 ifeq ($(CROSSCOMPILE),)
 ifeq ($(shell uname -s),Linux)
 LDFLAGS += -fPIC -shared
@@ -32,6 +29,9 @@ ERL_CFLAGS ?= -I$(ERL_EI_INCLUDE_DIR)
 ERL_LDFLAGS ?= -L$(ERL_EI_LIBDIR)
 
 CFLAGS += -std=c11 -O3 -Wall -Wextra -Wno-unused-function -Wno-unused-parameter -Wno-missing-field-initializers
+
+CFLAGS += -I$(shell echo "open_blas_include" | elixir scripts/system.exs)
+LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -l$(shell echo "lib_openblas" | elixir scripts/system.exs)
 
 NIF_SRC_DIR = nif_src
 C_SRC = $(NIF_SRC_DIR)/libnif.c
