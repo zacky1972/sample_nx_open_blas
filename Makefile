@@ -4,6 +4,9 @@ PRIV = $(MIX_APP_PATH)/priv
 BUILD = $(MIX_APP_PATH)/obj
 NIF = $(PRIV)/libnif.so
 
+CFLAGS += -I$(shell echo "open_blas_include" | elixir scripts/system.exs)
+LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -lopenblas
+
 ifeq ($(CROSSCOMPILE),)
 ifeq ($(shell uname -s),Linux)
 LDFLAGS += -fPIC -shared
