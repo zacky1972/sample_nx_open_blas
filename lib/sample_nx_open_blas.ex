@@ -18,7 +18,7 @@ defmodule SampleNxOpenBlas do
     end
   end
 
-  def copy_nif(_t), do: :erlang.nif_error(:not_loaded)
+  def scopy_nif(_t), do: :erlang.nif_error(:not_loaded)
 
   @doc """
   Hello world.
