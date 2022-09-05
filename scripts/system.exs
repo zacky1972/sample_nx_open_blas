@@ -5,7 +5,8 @@ defmodule SampleNxOpenBlas.System do
       package_system: package_system(),
       open_blas: open_blas(),
       open_blas_include: open_blas_include(),
-      open_blas_lib: open_blas_lib()
+      open_blas_lib: open_blas_lib(),
+      lib_openblas: lib_openblas()
     }
   end
 
@@ -94,6 +95,26 @@ defmodule SampleNxOpenBlas.System do
     |> case do
       [] -> ""
       list -> hd(list)
+    end
+  end
+
+  def lib_openblas() do
+    Path.wildcard("#{open_blas_lib()}/libopenblas*.{so,dylib}")
+    |> case do
+      [] ->
+        ""
+
+      list ->
+        hd(list) |> basename() |> String.slice(3..-1)
+    end
+  end
+
+  defp basename(path) do
+    if String.match?(path, ~r/\./) do
+      ext = Path.extname(path)
+      Path.basename(path, ext) |> basename()
+    else
+      path
     end
   end
 

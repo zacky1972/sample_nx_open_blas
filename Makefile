@@ -5,7 +5,7 @@ BUILD = $(MIX_APP_PATH)/obj
 NIF = $(PRIV)/libnif.so
 
 CFLAGS += -I$(shell echo "open_blas_include" | elixir scripts/system.exs)
-LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -lopenblas
+LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -l$(shell echo "lib_openblas" | elixir scripts/system.exs)
 
 ifeq ($(CROSSCOMPILE),)
 ifeq ($(shell uname -s),Linux)
