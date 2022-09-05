@@ -117,3 +117,7 @@ defmodule SampleNxOpenBlas.System do
     end
   end
 end
+
+system = SampleNxOpenBlas.System.system()
+key = IO.read(:stdio, :eof) |> String.trim() |> String.to_atom()
+IO.puts(Map.get(system, key, ""))
