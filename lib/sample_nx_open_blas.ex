@@ -18,7 +18,6 @@ defmodule SampleNxOpenBlas do
     end
   end
 
-
   @doc """
   Copys 32bit float.
   ## Examples
