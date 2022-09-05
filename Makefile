@@ -30,8 +30,14 @@ ERL_LDFLAGS ?= -L$(ERL_EI_LIBDIR)
 
 CFLAGS += -std=c11 -O3 -Wall -Wextra -Wno-unused-function -Wno-unused-parameter -Wno-missing-field-initializers
 
+OPENBLAS = $(shell echo "lib_openblas" | elixir scripts/system.exs)
+
+ifeq ($(OPENBLAS),)
+$(error Fail to get OpenBLAS. Install it by Homebrew or Aptitude)
+endif
+
 CFLAGS += -I$(shell echo "open_blas_include" | elixir scripts/system.exs)
-LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -l$(shell echo "lib_openblas" | elixir scripts/system.exs)
+LDFLAGS += -L$(shell echo "open_blas_lib" | elixir scripts/system.exs) -l$(OPENBLAS)
 
 NIF_SRC_DIR = nif_src
 C_SRC = $(NIF_SRC_DIR)/libnif.c
