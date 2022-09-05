@@ -1,4 +1,5 @@
 #include <erl_nif.h>
+#include <cblas.h>
 
 static ERL_NIF_TERM copy_nif(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 {
